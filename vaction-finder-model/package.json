@@ -1,0 +1,16 @@
+{
+  "name": "vaction-finder-model",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "aws-cdk": "^2.1014.0",
+    "aws-cdk-lib": "^2.195.0"
+  }
+}
