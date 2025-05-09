@@ -2,6 +2,6 @@
 exports.main = async function (event, context) {
   return {
     statusCode: 200,
-    body: JSON.stringify("Hello from lambda!"),
+    body: JSON.stringify(`Table Name: ${process.env.TABLE_NAME}`),
   };
 };
