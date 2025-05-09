@@ -1,7 +1,7 @@
 //Strucuture of cdk lambda example
-export async function main(event, context) {
+exports.main = async function (event, context) {
   return {
     statusCode: 200,
-    body: JSON.stringify("Lambda Test output"),
+    body: JSON.stringify("Hello from lambda!"),
   };
-}
+};
