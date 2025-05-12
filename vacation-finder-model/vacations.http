@@ -1,4 +1,7 @@
 
 
-GET https://maev402wml.execute-api.us-east-2.amazonaws.com/prod/vacations
+GET https://ppampflzn7.execute-api.us-east-2.amazonaws.com/prod/vacations
+###
+
+POST https://ppampflzn7.execute-api.us-east-2.amazonaws.com/prod/vacations
 ###

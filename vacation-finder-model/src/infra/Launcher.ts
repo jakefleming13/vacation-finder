@@ -14,5 +14,5 @@ const lambdaStack = new LambdaStack(app, "LambdaStack", {
 
 //API Gateway stack
 new ApiStack(app, "ApiStack", {
-  testLambdaIntegration: lambdaStack.testLambdaIntegration,
+  vacationsLambdaIntegration: lambdaStack.vacationsLambdaIntegration,
 });

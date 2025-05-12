@@ -3,7 +3,7 @@ import { LambdaIntegration, RestApi } from "aws-cdk-lib/aws-apigateway";
 import { Construct } from "constructs";
 
 interface ApiStackProps extends StackProps {
-  testLambdaIntegration: LambdaIntegration;
+  vacationsLambdaIntegration: LambdaIntegration;
 }
 
 export class ApiStack extends Stack {
@@ -14,6 +14,7 @@ export class ApiStack extends Stack {
     const vacationResource = api.root.addResource("vacations");
 
     //Link to lambda that we created
-    vacationResource.addMethod("GET", props.testLambdaIntegration);
+    vacationResource.addMethod("GET", props.vacationsLambdaIntegration);
+    vacationResource.addMethod("POST", props.vacationsLambdaIntegration);
   }
 }
