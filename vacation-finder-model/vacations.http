@@ -4,4 +4,10 @@ GET https://ppampflzn7.execute-api.us-east-2.amazonaws.com/prod/vacations
 ###
 
 POST https://ppampflzn7.execute-api.us-east-2.amazonaws.com/prod/vacations
+content-type: application/json
+
+{
+    "location": "Paris"
+}
 ###
+
