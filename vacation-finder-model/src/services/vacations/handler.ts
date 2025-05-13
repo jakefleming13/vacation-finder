@@ -5,6 +5,7 @@ import {
   Context,
 } from "aws-lambda";
 import { PostVacations } from "./PostVacations";
+import { GetVacations } from "./GetVacations";
 
 const ddbClient = new DynamoDBClient({});
 
@@ -19,12 +20,14 @@ async function handler(
     //Different excecution based on the events http method being used
     switch (event.httpMethod) {
       case "GET":
-        message = "Get method";
+        message = "Get method in handler";
+        const getResponse = GetVacations(event, ddbClient);
+        return getResponse;
         break;
       case "POST":
-        message = "Post method";
-        const response = PostVacations(event, ddbClient);
-        return response;
+        message = "Post method in handler";
+        const postResponse = PostVacations(event, ddbClient);
+        return postResponse;
       default:
         message = "Invalid HTTP method";
         break;
