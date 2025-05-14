@@ -21,12 +21,12 @@ async function handler(
     switch (event.httpMethod) {
       case "GET":
         message = "Get method in handler";
-        const getResponse = GetVacations(event, ddbClient);
+        const getResponse = await GetVacations(event, ddbClient);
+        console.log(getResponse);
         return getResponse;
-        break;
       case "POST":
         message = "Post method in handler";
-        const postResponse = PostVacations(event, ddbClient);
+        const postResponse = await PostVacations(event, ddbClient);
         return postResponse;
       default:
         message = "Invalid HTTP method";
