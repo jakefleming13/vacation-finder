@@ -3,6 +3,7 @@ import {
   GetItemCommand,
   ScanCommand,
 } from "@aws-sdk/client-dynamodb";
+import { unmarshall } from "@aws-sdk/util-dynamodb";
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
 export async function GetVacations(
@@ -24,9 +25,11 @@ export async function GetVacations(
         })
       );
       if (getItemResponse.Item) {
+        //Covert DynamoDB attribute type to something more useable for us
+        const unmarshalledItem = unmarshall(getItemResponse.Item);
         return {
           statusCode: 200,
-          body: JSON.stringify(getItemResponse.Item),
+          body: JSON.stringify(unmarshalledItem),
         };
       } else {
         return {
@@ -42,15 +45,17 @@ export async function GetVacations(
     }
   }
 
+  //if no params provided, scan the entire table
   const result = await ddbClient.send(
     new ScanCommand({
       TableName: process.env.TABLE_NAME,
     })
   );
+  const unmarshalledItems = result.Items?.map((item) => unmarshall(item));
 
-  console.log("Start of result: \n" + result.Items);
+  console.log("Start of result: \n" + unmarshalledItems);
   return {
     statusCode: 201,
-    body: JSON.stringify(result.Items),
+    body: JSON.stringify(unmarshalledItems),
   };
 }

@@ -1,4 +1,5 @@
 import { DynamoDBClient, PutItemCommand } from "@aws-sdk/client-dynamodb";
+import { marshall } from "@aws-sdk/util-dynamodb";
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { v4 } from "uuid";
 
@@ -15,14 +16,8 @@ export async function PostVacations(
   const result = await ddbClient.send(
     new PutItemCommand({
       TableName: process.env.TABLE_NAME,
-      Item: {
-        id: {
-          S: item.id,
-        },
-        location: {
-          S: item.location,
-        },
-      },
+
+      Item: marshall(item), //add attribute types to the item
     })
   );
   console.log("Start of result: \n" + result);
