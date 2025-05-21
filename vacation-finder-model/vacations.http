@@ -14,6 +14,8 @@ content-type: application/json
 GET https://ppampflzn7.execute-api.us-east-2.amazonaws.com/prod/vacations?id=cc809a34-2c45-448d-bc78-b9ea130fadab
 ###
 
+DELETE https://ppampflzn7.execute-api.us-east-2.amazonaws.com/prod/vacations?id=cc809a34-2c45-448d-bc78-b9ea130fadab
+###
 
 PUT https://ppampflzn7.execute-api.us-east-2.amazonaws.com/prod/vacations?id=cc809a34-2c45-448d-bc78-b9ea130fadab
 content-type: application/json
