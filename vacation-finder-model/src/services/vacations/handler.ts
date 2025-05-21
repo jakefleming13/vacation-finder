@@ -6,6 +6,7 @@ import {
 } from "aws-lambda";
 import { PostVacations } from "./PostVacations";
 import { GetVacations } from "./GetVacations";
+import { updateVacations } from "./UpdateVacations ";
 
 const ddbClient = new DynamoDBClient({});
 
@@ -28,6 +29,10 @@ async function handler(
         message = "Post method in handler";
         const postResponse = await PostVacations(event, ddbClient);
         return postResponse;
+      case "PUT":
+        const putReponse = await updateVacations(event, ddbClient);
+        console.log(putReponse);
+        return putReponse;
       default:
         message = "Invalid HTTP method";
         break;
