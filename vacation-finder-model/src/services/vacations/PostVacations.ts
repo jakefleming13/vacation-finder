@@ -3,13 +3,13 @@ import { marshall } from "@aws-sdk/util-dynamodb";
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { v4 } from "uuid";
 import { validateAsVacationEntry } from "../shared/DataValidator";
-import { parseJSON } from "../shared/Utils";
+import { createRandomID, parseJSON } from "../shared/Utils";
 
 export async function PostVacations(
   event: APIGatewayProxyEvent,
   ddbClient: DynamoDBClient
 ): Promise<APIGatewayProxyResult> {
-  const randomId = v4();
+  const randomId = createRandomID();
 
   //custom parseJSON func now throws the appropriate error
   const item = parseJSON(event.body);
