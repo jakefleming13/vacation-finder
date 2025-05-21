@@ -3,6 +3,7 @@ import { marshall } from "@aws-sdk/util-dynamodb";
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { v4 } from "uuid";
 import { validateAsVacationEntry } from "../shared/DataValidator";
+import { parseJSON } from "../shared/Utils";
 
 export async function PostVacations(
   event: APIGatewayProxyEvent,
@@ -10,8 +11,8 @@ export async function PostVacations(
 ): Promise<APIGatewayProxyResult> {
   const randomId = v4();
 
-  //May throw errors related to the body not being properly configured
-  const item = JSON.parse(event.body);
+  //custom parseJSON func now throws the appropriate error
+  const item = parseJSON(event.body);
   item.id = randomId;
 
   //Use custom validation function
