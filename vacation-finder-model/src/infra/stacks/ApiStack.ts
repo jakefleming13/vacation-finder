@@ -16,5 +16,7 @@ export class ApiStack extends Stack {
     //Link to lambda that we created
     vacationResource.addMethod("GET", props.vacationsLambdaIntegration);
     vacationResource.addMethod("POST", props.vacationsLambdaIntegration);
+    vacationResource.addMethod("PUT", props.vacationsLambdaIntegration);
+    vacationResource.addMethod("DELETE", props.vacationsLambdaIntegration);
   }
 }

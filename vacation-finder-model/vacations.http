@@ -7,20 +7,22 @@ POST https://ppampflzn7.execute-api.us-east-2.amazonaws.com/prod/vacations
 content-type: application/json
 
 {
-    "location": "London"
+    "location": "London",
+    "name":"London item"
+    
 }
 ###
 
-GET https://ppampflzn7.execute-api.us-east-2.amazonaws.com/prod/vacations?id=cc809a34-2c45-448d-bc78-b9ea130fadab
+GET https://ppampflzn7.execute-api.us-east-2.amazonaws.com/prod/vacations?id=adb35f9c-5d1d-4d4b-804a-5579e12a5296
 ###
 
-DELETE https://ppampflzn7.execute-api.us-east-2.amazonaws.com/prod/vacations?id=cc809a34-2c45-448d-bc78-b9ea130fadab
+DELETE https://ppampflzn7.execute-api.us-east-2.amazonaws.com/prod/vacations?id=adb35f9c-5d1d-4d4b-804a-5579e12a5296
 ###
 
-PUT https://ppampflzn7.execute-api.us-east-2.amazonaws.com/prod/vacations?id=cc809a34-2c45-448d-bc78-b9ea130fadab
+PUT https://ppampflzn7.execute-api.us-east-2.amazonaws.com/prod/vacations?id=adb35f9c-5d1d-4d4b-804a-5579e12a5296
 content-type: application/json
 
 {
-    "location": "London2"
+    "location": "London Updated"
 }
 ###
