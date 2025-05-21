@@ -5,10 +5,15 @@ process.env.TABLE_NAME = "VacationsTable-0605f1bccdbb";
 
 handler(
   {
-    httpMethod: "DELETE",
-    queryStringParameters: {
-      id: "cc809a34-2c45-448d-bc78-b9ea130fadab",
-    },
+    httpMethod: "POST",
+    // queryStringParameters: {
+    //   id: "cc809a34-2c45-448d-bc78-b9ea130fadab",
+    // },
+    body: JSON.stringify({
+      location: "Hawaii",
+    }),
   } as any,
   {} as any
-);
+).then((result) => {
+  console.log(result);
+});

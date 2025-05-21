@@ -8,6 +8,7 @@ import { PostVacations } from "./PostVacations";
 import { GetVacations } from "./GetVacations";
 import { updateVacations } from "./UpdateVacations ";
 import { deleteVacations } from "./DeleteVacations";
+import { MissingFieldError } from "../shared/DataValidator";
 
 const ddbClient = new DynamoDBClient({});
 
@@ -44,10 +45,16 @@ async function handler(
         break;
     }
   } catch (error) {
-    console.error(error);
+    //Add custom validation check to ensure correct error message and status code
+    if (error instanceof MissingFieldError) {
+      return {
+        statusCode: 400,
+        body: error.message,
+      };
+    }
     return {
       statusCode: 500,
-      body: JSON.stringify(error.message),
+      body: error.message,
     };
   }
 
