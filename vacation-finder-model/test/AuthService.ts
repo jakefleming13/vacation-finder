@@ -31,6 +31,6 @@ export class AuthService {
   //only call after login
   public async getIdToken() {
     const authSession = await fetchAuthSession();
-    return authSession.tokens?.idToken?.toString;
+    return authSession.tokens?.idToken?.toString();
   }
 }
