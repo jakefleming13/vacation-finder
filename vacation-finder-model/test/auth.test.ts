@@ -1,6 +1,7 @@
 import test from "node:test";
 import { AuthService } from "./AuthService";
 
+//function to get a new token after each deploy
 async function testAuth() {
   const service = new AuthService();
   const loginResult = await service.login("firstuserjohn", "(John1205675");
