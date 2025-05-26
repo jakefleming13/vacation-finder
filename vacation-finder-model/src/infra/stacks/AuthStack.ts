@@ -7,7 +7,12 @@ import {
   UserPoolClient,
 } from "aws-cdk-lib/aws-cognito";
 import { CfnUserGroup } from "aws-cdk-lib/aws-elasticache";
-import { FederatedPrincipal, Role } from "aws-cdk-lib/aws-iam";
+import {
+  Effect,
+  FederatedPrincipal,
+  PolicyStatement,
+  Role,
+} from "aws-cdk-lib/aws-iam";
 import { Construct } from "constructs";
 
 //Stack that will contain the Dynamodb database
@@ -23,12 +28,13 @@ export class AuthStack extends Stack {
 
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
+
     this.createUserPool();
     this.createUserPoolClient();
-    this.createAdminGroup();
     this.createIdentityPool();
     this.createRoles();
     this.attachRoles();
+    this.createAdminGroup();
   }
 
   //use private methods to better organize our code
@@ -72,6 +78,7 @@ export class AuthStack extends Stack {
     new CfnUserPoolGroup(this, "VacationsAdmins", {
       userPoolId: this.userPool.userPoolId,
       groupName: "admins",
+      roleArn: this.adminRole.roleArn,
     });
   }
 
@@ -143,6 +150,15 @@ export class AuthStack extends Stack {
         "sts:AssumeRoleWithWebIdentity"
       ),
     });
+
+    //Policy to test if our new roles work
+    this.adminRole.addToPolicy(
+      new PolicyStatement({
+        effect: Effect.ALLOW,
+        actions: ["s3:ListAllMyBuckets"],
+        resources: ["*"],
+      })
+    );
   }
 
   private attachRoles() {
