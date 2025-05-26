@@ -4,7 +4,7 @@ import { Construct } from "constructs";
 
 //Stack that will contain the Dynamodb database
 export class AuthStack extends Stack {
-  private userPool: UserPool;
+  public userPool: UserPool;
   private userPoolClient: UserPoolClient;
 
   constructor(scope: Construct, id: string, props?: StackProps) {

@@ -14,9 +14,10 @@ const lambdaStack = new LambdaStack(app, "LambdaStack", {
 });
 
 //Cognito User Pools stack
-new AuthStack(app, "AuthStack");
+const authStack = new AuthStack(app, "AuthStack");
 
 //API Gateway stack
 new ApiStack(app, "ApiStack", {
   vacationsLambdaIntegration: lambdaStack.vacationsLambdaIntegration,
+  userPool: authStack.userPool,
 });
