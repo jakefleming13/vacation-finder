@@ -1,3 +1,4 @@
+import { APIGatewayProxyEvent } from "aws-lambda";
 import { JSONError } from "./DataValidator";
 import { randomUUID } from "crypto";
 
@@ -14,4 +15,13 @@ export function parseJSON(arg: string) {
   } catch (error) {
     throw new JSONError(error.message);
   }
+}
+
+//function to determine if a user belongs to an admin group
+export function hasAdminGroup(event: APIGatewayProxyEvent) {
+  const groups = event.requestContext.authorizer?.claims["cognito:groups"];
+  if (groups) {
+    return (groups as string).includes("admins");
+  }
+  return false;
 }
