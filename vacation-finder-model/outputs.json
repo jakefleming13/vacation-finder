@@ -1,18 +1,24 @@
 {
-  "DataStack": {
-    "ExportsOutputRefVacationsTable4EADB10CE445282A": "VacationsTable-0605f1bccdbb",
-    "ExportsOutputFnGetAttVacationsTable4EADB10CArnADC1D7AC": "arn:aws:dynamodb:us-east-2:483579223850:table/VacationsTable-0605f1bccdbb"
-  },
   "AuthStack": {
     "VacationIdentityPoolId": "us-east-2:f129b1ec-6d60-4441-a5ac-bcc372376d8e",
     "VacationUserPoolClientId": "4paksj1b9d7u3c4ql3ihjj5ki",
     "VacationUserPoolId": "us-east-2_hRQRcPRUw",
     "ExportsOutputFnGetAttVacationUserPoolEBB752E3ArnCD7BD2A7": "arn:aws:cognito-idp:us-east-2:483579223850:userpool/us-east-2_hRQRcPRUw"
   },
+  "DataStack": {
+    "ExportsOutputRefVacationsTable4EADB10CE445282A": "VacationsTable-0605f1bccdbb",
+    "ExportsOutputFnGetAttVacationsTable4EADB10CArnADC1D7AC": "arn:aws:dynamodb:us-east-2:483579223850:table/VacationsTable-0605f1bccdbb",
+    "ExportsOutputRefVacationFinderFrontend075EE5475F4F6FA7": "vacation-finder-frontend-0605f1bccdbb",
+    "ExportsOutputFnGetAttVacationFinderFrontend075EE547WebsiteURL3EFA38BB": "http://vacation-finder-frontend-0605f1bccdbb.s3-website.us-east-2.amazonaws.com",
+    "ExportsOutputFnGetAttVacationFinderFrontend075EE547Arn4B01E9BE": "arn:aws:s3:::vacation-finder-frontend-0605f1bccdbb"
+  },
   "LambdaStack": {
     "ExportsOutputFnGetAttvacationsLambda01CB0E67Arn2C59B143": "arn:aws:lambda:us-east-2:483579223850:function:LambdaStack-vacationsLambda01CB0E67-b4CeOXlxrAbk"
   },
   "ApiStack": {
     "VacationsApiEndpoint405A4BD9": "https://ppampflzn7.execute-api.us-east-2.amazonaws.com/prod/"
+  },
+  "UiDeploymentStack": {
+    "vacationfinderuideploymentS3Url": "http://vacation-finder-frontend-0605f1bccdbb.s3-website.us-east-2.amazonaws.com"
   }
 }
