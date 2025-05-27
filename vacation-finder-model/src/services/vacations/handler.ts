@@ -9,6 +9,7 @@ import { GetVacations } from "./GetVacations";
 import { updateVacations } from "./UpdateVacations ";
 import { deleteVacations } from "./DeleteVacations";
 import { JSONError, MissingFieldError } from "../shared/DataValidator";
+import { addCORSHeader } from "../shared/Utils";
 
 const ddbClient = new DynamoDBClient({});
 
@@ -17,6 +18,9 @@ async function handler(
   event: APIGatewayProxyEvent,
   context: Context
 ): Promise<APIGatewayProxyResult> {
+  //Add CORS header to the APIGatewayProxyResult
+  let response: APIGatewayProxyResult;
+
   let message: string;
 
   try {
@@ -26,20 +30,24 @@ async function handler(
         message = "Get method in handler";
         const getResponse = await GetVacations(event, ddbClient);
         console.log(getResponse);
-        return getResponse;
+        response = getResponse;
+        break;
       case "POST":
         message = "Post method in handler";
         const postResponse = await PostVacations(event, ddbClient);
         console.log(postResponse);
-        return postResponse;
+        response = postResponse;
+        break;
       case "PUT":
         const putReponse = await updateVacations(event, ddbClient);
         console.log(putReponse);
-        return putReponse;
+        response = putReponse;
+        break;
       case "DELETE":
         const deleteReponse = await deleteVacations(event, ddbClient);
         console.log(deleteReponse);
-        return deleteReponse;
+        response = deleteReponse;
+        break;
       default:
         message = "Invalid HTTP method";
         break;
@@ -63,11 +71,7 @@ async function handler(
     };
   }
 
-  const response: APIGatewayProxyResult = {
-    statusCode: 200,
-    body: JSON.stringify(message),
-  };
-
+  addCORSHeader(response);
   return response;
 }
 

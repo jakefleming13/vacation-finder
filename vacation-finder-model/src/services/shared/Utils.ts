@@ -1,4 +1,4 @@
-import { APIGatewayProxyEvent } from "aws-lambda";
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { JSONError } from "./DataValidator";
 import { randomUUID } from "crypto";
 
@@ -24,4 +24,14 @@ export function hasAdminGroup(event: APIGatewayProxyEvent) {
     return (groups as string).includes("admins");
   }
   return false;
+}
+
+//Add to our HTTP response header to allow for CORS
+export function addCORSHeader(arg: APIGatewayProxyResult) {
+  if (!arg.headers) {
+    arg.headers = {};
+  }
+  //add new fields in the header -> make our server available from any website (not exactly a best practice)
+  arg.headers["Access-Control-Allow-Origin"] = "*";
+  arg.headers["Access-Control-Allow-Methods"] = "*";
 }
