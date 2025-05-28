@@ -6,15 +6,16 @@ import { ListBucketsCommand, S3Client } from "@aws-sdk/client-s3";
 async function testAuth() {
   const service = new AuthService();
   const loginResult = await service.login("firstuserjohn", "(John1205675");
+  console.log(loginResult);
   const idToken = await service.getIdToken();
   //console.log(idToken);
   console.log();
 
-  const credentials = await service.generateTempCredentials();
+  //const credentials = await service.generateTempCredentials();
   //console.log(credentials);
 
-  const bucketResults = await listBuckets(credentials);
-  console.log(bucketResults);
+  //const bucketResults = await listBuckets(credentials);
+  //console.log(bucketResults);
 }
 
 //function to test admin role
