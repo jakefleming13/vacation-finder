@@ -66,7 +66,7 @@ export class AuthService {
 
   private async generateTempCredentials() {
     const cognitoIdentityPool = `cognito-idp.${awsRegion}.amazonaws.com/${AuthStack.VacationUserPoolId}`;
-
+    //const cognitoIdentityPool = `cognito-idp.${awsRegion}.amazonaws.com/us-east-2_hRQRcPRUw`;
     const cognitoIdentity = new CognitoIdentityClient({
       credentials: fromCognitoIdentityPool({
         clientConfig: {
