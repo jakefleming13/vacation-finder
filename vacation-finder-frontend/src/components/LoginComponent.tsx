@@ -27,7 +27,7 @@ export default function LoginComponent({
       if (userName2) {
         setUserNameCb(userName2);
       }
-
+      console.log(loginResponse);
       if (loginResponse) {
         setLoginSuccess(true);
       } else {
