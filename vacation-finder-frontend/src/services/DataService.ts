@@ -1,6 +1,11 @@
 import type { AuthService } from "./AuthService";
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
-import { DataStack } from "../../../vacation-finder-model/outputs.json";
+import {
+  DataStack,
+  ApiStack,
+} from "../../../vacation-finder-model/outputs.json";
+
+const vacationsUrl = ApiStack.VacationsApiEndpoint405A4BD9 + "vacations";
 
 export class DataService {
   private authService: AuthService;
@@ -12,12 +17,27 @@ export class DataService {
   }
 
   public async createSpace(name: string, location: string, photo?: File) {
-    console.log("calling create space!!");
+    const vacation = {} as any;
+    vacation.name = name;
+    vacation.location = location;
+
     if (photo) {
       const uploadUrl = await this.uploadPublicFile(photo);
-      console.log(uploadUrl);
+      vacation.photoUrl = uploadUrl;
     }
-    return "123" + name + location;
+
+    //will return the id of our newly created vacation
+    const postResult = await fetch(vacationsUrl, {
+      method: "POST",
+      body: JSON.stringify(vacation),
+      headers: {
+        Authorization: this.authService.jwtToken!,
+      },
+    });
+
+    const postResultJSON = await postResult.json();
+
+    return postResultJSON.id;
   }
 
   private async uploadPublicFile(file: File) {

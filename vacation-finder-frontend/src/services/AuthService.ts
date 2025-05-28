@@ -24,7 +24,7 @@ export class AuthService {
   private userName: string = "";
 
   //generate temp credentials to take a file from local machine to s3 using the web browser
-  private jwtToken: string | undefined;
+  public jwtToken: string | undefined;
   private temporaryCredentials: object | undefined;
 
   public async login(
