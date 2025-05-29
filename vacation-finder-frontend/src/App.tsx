@@ -5,7 +5,8 @@ import { useState } from "react";
 import LoginComponent from "./components/LoginComponent";
 import { AuthService } from "./services/AuthService";
 import { DataService } from "./services/DataService";
-import CreateSpace from "./components/vacations/CreateVacation";
+import VacationSpace from "./components/vacations/CreateVacation";
+import Vacations from "./components/vacations/Vacations";
 
 const authService = new AuthService();
 const dataService = new DataService(authService);
@@ -41,11 +42,11 @@ function App() {
         },
         {
           path: "/createSpace",
-          element: <CreateSpace dataService={dataService} />,
+          element: <VacationSpace dataService={dataService} />,
         },
         {
           path: "/spaces",
-          element: <div>Spaces page </div>,
+          element: <Vacations dataService={dataService} />,
         },
       ],
     },
