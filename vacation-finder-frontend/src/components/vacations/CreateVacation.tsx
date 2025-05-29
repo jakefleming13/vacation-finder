@@ -2,7 +2,7 @@ import { useState, type SyntheticEvent } from "react";
 import { NavLink } from "react-router-dom";
 import { DataService } from "../../services/DataService";
 
-type CreateSpaceProps = {
+type CreateVacationProps = {
   dataService: DataService;
 };
 
@@ -10,7 +10,7 @@ type CustomEvent = {
   target: HTMLInputElement;
 };
 
-export default function CreateSpace({ dataService }: CreateSpaceProps) {
+export default function VacationSpace({ dataService }: CreateVacationProps) {
   const [name, setName] = useState<string>("");
   const [location, setLocation] = useState<string>("");
   const [photo, setPhoto] = useState<File | undefined>();
@@ -19,7 +19,7 @@ export default function CreateSpace({ dataService }: CreateSpaceProps) {
   const handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
     if (name && location) {
-      const id = await dataService.createSpace(name, location, photo);
+      const id = await dataService.createVacation(name, location, photo);
       setActionResult(`Created space with id ${id}`);
       setName("");
       setLocation("");

@@ -4,6 +4,7 @@ import {
   DataStack,
   ApiStack,
 } from "../../../vacation-finder-model/outputs.json";
+import type { VacationEntry } from "../components/model/model";
 
 const vacationsUrl = ApiStack.VacationsApiEndpoint405A4BD9 + "vacations";
 
@@ -16,7 +17,24 @@ export class DataService {
     this.authService = authService;
   }
 
-  public async createSpace(name: string, location: string, photo?: File) {
+  public reserveVacation(vacationId: string) {
+    return "123";
+  }
+
+  //function to get vacations
+  public async getVacations(): Promise<VacationEntry[]> {
+    const getVacationsResult = await fetch(vacationsUrl, {
+      method: "GET",
+      headers: {
+        authorization: this.authService.jwtToken!,
+      },
+    });
+
+    const getResultJSON = await getVacationsResult.json();
+    return getResultJSON;
+  }
+
+  public async createVacation(name: string, location: string, photo?: File) {
     const vacation = {} as any;
     vacation.name = name;
     vacation.location = location;
@@ -66,6 +84,6 @@ export class DataService {
   }
 
   public isAuthorized() {
-    return true;
+    return this.authService.isAuthorized();
   }
 }
