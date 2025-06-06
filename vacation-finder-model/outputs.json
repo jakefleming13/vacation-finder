@@ -8,8 +8,8 @@
     "VacationFinderPhotosBucketName": "vacation-finder-photos-0605f1bccdbb",
     "ExportsOutputFnGetAttVacationFinderFrontend075EE547Arn4B01E9BE": "arn:aws:s3:::vacation-finder-frontend-0605f1bccdbb"
   },
-  "UiDeploymentStack": {
-    "vacationfinderuideploymentS3Url": "http://vacation-finder-frontend-0605f1bccdbb.s3-website.us-east-2.amazonaws.com"
+  "LambdaStack": {
+    "ExportsOutputFnGetAttvacationsLambda01CB0E67Arn2C59B143": "arn:aws:lambda:us-east-2:483579223850:function:LambdaStack-vacationsLambda01CB0E67-b4CeOXlxrAbk"
   },
   "AuthStack": {
     "VacationIdentityPoolId": "us-east-2:f129b1ec-6d60-4441-a5ac-bcc372376d8e",
@@ -17,8 +17,8 @@
     "VacationUserPoolId": "us-east-2_hRQRcPRUw",
     "ExportsOutputFnGetAttVacationUserPoolEBB752E3ArnCD7BD2A7": "arn:aws:cognito-idp:us-east-2:483579223850:userpool/us-east-2_hRQRcPRUw"
   },
-  "LambdaStack": {
-    "ExportsOutputFnGetAttvacationsLambda01CB0E67Arn2C59B143": "arn:aws:lambda:us-east-2:483579223850:function:LambdaStack-vacationsLambda01CB0E67-b4CeOXlxrAbk"
+  "UiDeploymentStack": {
+    "vacationfinderuideploymentS3Url": "http://vacation-finder-frontend-0605f1bccdbb.s3-website.us-east-2.amazonaws.com"
   },
   "ApiStack": {
     "VacationsApiEndpoint405A4BD9": "https://ppampflzn7.execute-api.us-east-2.amazonaws.com/prod/"
