@@ -51,7 +51,12 @@ function App() {
         },
         {
           path: "/logout",
-          element: <LogoutComponent />,
+          element: (
+            <LogoutComponent
+              authService={authService}
+              setUserNameCb={setUserName}
+            />
+          ),
         },
       ],
     },
