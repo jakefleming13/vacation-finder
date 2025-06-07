@@ -4,6 +4,7 @@ import {
   fetchAuthSession,
   getCurrentUser,
   signIn,
+  signOut,
   type AuthUser,
 } from "@aws-amplify/auth";
 import { type SignInOutput } from "@aws-amplify/auth";
@@ -116,14 +117,22 @@ export class AuthService {
     return credentials;
   }
 
-  // private async generateIdToken() {
-  //   //populate private jwtToken field
-  //   const session = await fetchAuthSession();
-  //   this.jwtToken = session.tokens?.idToken?.toString();
-  //   console.log("JWT Token: " + this.jwtToken);
-  // }
-
   public getUserName() {
     return this.userName;
+  }
+
+  public async logout(): Promise<void> {
+    try {
+      await signOut();
+      this.user = undefined;
+      this.jwtToken = undefined;
+      this.temporaryCredentials = undefined;
+      this.userName = "";
+      console.log("User successfully signed out.");
+      const user = await this.getCurrentUser();
+      console.log(user);
+    } catch (error) {
+      console.error("Error signing out: ", error);
+    }
   }
 }
