@@ -7,6 +7,7 @@ import { AuthService } from "./services/AuthService";
 import { DataService } from "./services/DataService";
 import VacationSpace from "./components/vacations/CreateVacation";
 import Vacations from "./components/vacations/Vacations";
+import LogoutComponent from "./components/LogoutComponent";
 
 const authService = new AuthService();
 const dataService = new DataService(authService);
@@ -47,6 +48,10 @@ function App() {
         {
           path: "/spaces",
           element: <Vacations dataService={dataService} />,
+        },
+        {
+          path: "/logout",
+          element: <LogoutComponent />,
         },
       ],
     },
