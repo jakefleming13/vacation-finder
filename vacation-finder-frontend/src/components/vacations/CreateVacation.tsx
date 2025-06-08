@@ -13,7 +13,10 @@ export default function VacationSpace({ dataService }: CreateVacationProps) {
   const [actionResult, setActionResult] = useState<string>("");
   const [isErrorResult, setIsErrorResult] = useState<boolean>(false); // To differentiate success/error messages
 
+  const [disableButton, setDisableButton] = useState<boolean>(false);
+
   const handleSubmit = async (event: SyntheticEvent) => {
+    setDisableButton(true);
     event.preventDefault();
     if (name && location) {
       try {
@@ -35,6 +38,7 @@ export default function VacationSpace({ dataService }: CreateVacationProps) {
       setActionResult("Please provide a name and a location!");
       setIsErrorResult(true);
     }
+    setDisableButton(false);
   };
 
   // Adjusted type for better React compatibility
@@ -135,6 +139,7 @@ export default function VacationSpace({ dataService }: CreateVacationProps) {
           <button
             type="submit"
             className="w-full bg-green-600 text-white py-3 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors duration-200 text-lg font-semibold"
+            disabled={disableButton}
           >
             Create Vacation
           </button>
