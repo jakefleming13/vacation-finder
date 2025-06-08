@@ -18,7 +18,7 @@ export class DataService {
   }
 
   public reserveVacation(vacationId: string) {
-    return "123";
+    return "12" + vacationId;
   }
 
   //function to get vacations
