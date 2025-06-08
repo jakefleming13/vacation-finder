@@ -1,6 +1,5 @@
 import genericImage from "../../assets/generic-photo.jpg";
 import type { VacationEntry } from "../model/model";
-import "./VacationComponent.css";
 
 interface VacationComponentProps extends VacationEntry {
   reserveVacation: (vacationId: string, vacationName: string) => void;
