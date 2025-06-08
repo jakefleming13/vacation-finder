@@ -110,7 +110,7 @@ export default function LoginComponent({
           <p className="text-gray-600 text-sm">
             Don't have an account?{" "}
             <NavLink
-              to="/" // Assuming you'll create a /signup route
+              to="/signup" // Assuming you'll create a /signup route
               className="text-blue-600 hover:text-blue-800 font-semibold transition-colors duration-200"
             >
               Sign up
