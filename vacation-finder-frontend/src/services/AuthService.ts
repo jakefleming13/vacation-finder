@@ -5,9 +5,10 @@ import {
   getCurrentUser,
   signIn,
   signOut,
+  signUp,
   type AuthUser,
 } from "@aws-amplify/auth";
-import { type SignInOutput } from "@aws-amplify/auth";
+import { type SignInOutput, type SignUpOutput } from "@aws-amplify/auth";
 import { CognitoIdentityClient } from "@aws-sdk/client-cognito-identity";
 import { fromCognitoIdentityPool } from "@aws-sdk/credential-providers";
 
@@ -78,6 +79,41 @@ export class AuthService {
     } catch (error) {
       console.error(error);
       return undefined;
+    }
+  }
+
+  public async signUpAndSignIn(
+    username: string,
+    email: string,
+    password: string
+  ): Promise<Object | undefined> {
+    try {
+      const signUpOutput: SignUpOutput = await signUp({
+        username,
+        password,
+        options: {
+          userAttributes: {
+            email,
+          },
+          // To achieve "immediately logged in after account creation" without confirmation,
+          // your Cognito User Pool MUST be configured for:
+          // 1. Email/phone verification: "No verification" or "Auto-verify"
+          // 2. User account status: "Auto-confirm new users" (often found under General settings -> Account recovery -> Self-service signup)
+          // If not configured this way, the nextStep will be 'CONFIRM_SIGN_UP'
+          // and the subsequent login will fail until confirmed.
+        },
+      });
+
+      console.log("SignUp output:", signUpOutput);
+
+      // Attempt to sign in immediately after signup.
+      // This assumes the user pool is configured for auto-confirmation.
+      // If confirmation is still required, this login will likely fail.
+      return await this.login(username, password);
+    } catch (error: any) {
+      console.error("Error during signup or auto-login:", error);
+      // Amplify errors often have a .name and .message property
+      throw new Error(error.message || "An unknown signup error occurred.");
     }
   }
 
