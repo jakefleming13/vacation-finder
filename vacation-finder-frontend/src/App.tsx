@@ -8,6 +8,8 @@ import { DataService } from "./services/DataService";
 import VacationSpace from "./components/vacations/CreateVacation";
 import Vacations from "./components/vacations/Vacations";
 import LogoutComponent from "./components/LogoutComponent";
+import HomeComponent from "./components/HomeComponent";
+import SignUpComponent from "./components/SignUpComponent";
 
 const authService = new AuthService();
 const dataService = new DataService(authService);
@@ -26,7 +28,7 @@ function App() {
       children: [
         {
           path: "/",
-          element: <div>Hello world!</div>,
+          element: <HomeComponent />,
         },
         {
           path: "/login",
@@ -40,6 +42,15 @@ function App() {
         {
           path: "/profile",
           element: <div>Profile page</div>,
+        },
+        {
+          path: "/signup",
+          element: (
+            <SignUpComponent
+              authService={authService}
+              setUserNameCb={setUserName}
+            />
+          ),
         },
         {
           path: "/createSpace",
