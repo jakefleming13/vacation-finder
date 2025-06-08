@@ -9,35 +9,82 @@ interface VacationsProps {
 }
 
 export default function Vacations(props: VacationsProps) {
-  const [vacations, setVacations] = useState<VacationEntry[]>();
-  const [reservationText, setReservationText] = useState<string>();
+  const [vacations, setVacations] = useState<VacationEntry[] | null>(null); // Initialize as null to differentiate loading state
+  const [reservationText, setReservationText] = useState<string | null>(null); // Initialize as null
+  const [isLoading, setIsLoading] = useState<boolean>(true); // New state for loading indicator
 
   useEffect(() => {
     const getVacations = async () => {
+      setIsLoading(true); // Start loading
       console.log("getting vacations....");
-      const vacations = await props.dataService.getVacations();
-      setVacations(vacations);
+      try {
+        const fetchedVacations = await props.dataService.getVacations();
+        setVacations(fetchedVacations);
+      } catch (error) {
+        console.error("Failed to fetch vacations:", error);
+        // Optionally set an error message here
+      } finally {
+        setIsLoading(false); // End loading
+      }
     };
     getVacations();
-  }, []);
+  }, [props.dataService]); // Add dataService to dependency array as it's from props
 
   async function reserveVacation(vacationId: string, vacationName: string) {
-    const reservationResult = await props.dataService.reserveVacation(
-      vacationId
-    );
-    setReservationText(
-      `You reserved ${vacationName}, reservation id: ${reservationResult}`
-    );
+    try {
+      const reservationResult = await props.dataService.reserveVacation(
+        vacationId
+      );
+      setReservationText(
+        `You reserved ${vacationName}, reservation ID: ${reservationResult}`
+      );
+    } catch (error) {
+      setReservationText(
+        `Error reserving ${vacationName}: ${
+          error instanceof Error ? error.message : String(error)
+        }`
+      );
+      // You might want a separate state for error messages or style this one differently
+    }
   }
 
-  function renderVacations() {
+  function renderVacationsContent() {
     if (!props.dataService.isAuthorized()) {
-      return <NavLink to={"/login"}>Please login</NavLink>;
+      return (
+        <div className="text-center p-8 bg-blue-50 rounded-lg shadow-md max-w-sm mx-auto mt-10">
+          <p className="text-lg text-gray-700 mb-4">
+            You need to be logged in to view vacations.
+          </p>
+          <NavLink
+            to={"/login"}
+            className="inline-block bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition-colors duration-200"
+          >
+            Please login
+          </NavLink>
+        </div>
+      );
     }
-    const rows: any[] = [];
-    if (vacations) {
-      for (const vacationEntry of vacations) {
-        rows.push(
+
+    if (isLoading) {
+      return (
+        <div className="text-center text-gray-600 text-lg mt-10">
+          <p>Loading vacations...</p>
+          {/* [Image of a loading spinner] */}
+        </div>
+      );
+    }
+
+    if (!vacations || vacations.length === 0) {
+      return (
+        <div className="text-center text-gray-600 text-lg mt-10">
+          No vacations found. Time to create one!
+        </div>
+      );
+    }
+
+    return (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 xl:gap-8 max-w-7xl mx-auto">
+        {vacations.map((vacationEntry) => (
           <VacationComponent
             key={vacationEntry.id}
             id={vacationEntry.id}
@@ -46,18 +93,22 @@ export default function Vacations(props: VacationsProps) {
             photoUrl={vacationEntry.photoUrl}
             reserveVacation={reserveVacation}
           />
-        );
-      }
-    }
-
-    return rows;
+        ))}
+      </div>
+    );
   }
 
   return (
-    <div>
-      <h2>Welcome to the Vacations page!</h2>
-      {reservationText ? <h2>{reservationText}</h2> : undefined}
-      {renderVacations()}
+    <div className="min-h-[calc(100vh-64px)] bg-white p-4 sm:p-6 lg:p-8">
+      <h2 className="text-4xl font-extrabold text-center text-gray-800 mb-6 mt-4">
+        Discover Your Next Adventure
+      </h2>
+      {reservationText && (
+        <h3 className="text-2xl font-semibold text-center text-blue-600 mb-8">
+          {reservationText}
+        </h3>
+      )}
+      {renderVacationsContent()}
     </div>
   );
 }
