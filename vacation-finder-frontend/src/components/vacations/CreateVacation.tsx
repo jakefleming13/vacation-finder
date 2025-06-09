@@ -27,11 +27,7 @@ export default function VacationSpace({ dataService }: CreateVacationProps) {
         setLocation("");
         setPhoto(undefined); // Clear photo preview after successful creation
       } catch (error) {
-        setActionResult(
-          `Error creating vacation: ${
-            error instanceof Error ? error.message : String(error)
-          }`
-        );
+        setActionResult(`Error: Please verfiy your email address`);
         setIsErrorResult(true);
       }
     } else {

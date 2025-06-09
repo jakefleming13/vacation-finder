@@ -77,7 +77,8 @@ export default function Vacations(props: VacationsProps) {
     if (!vacations || vacations.length === 0) {
       return (
         <div className="text-center text-gray-600 text-lg mt-10">
-          No vacations found. Time to create one!
+          Please click the email verification link sent to you to view
+          vacations.
         </div>
       );
     }

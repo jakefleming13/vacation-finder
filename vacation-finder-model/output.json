@@ -1,12 +1,12 @@
 {
-  "UiDeploymentStack": {
-    "VacationFinderUrl": "d1ii4uxvnf1xds.cloudfront.net"
-  },
   "DataStack": {
     "ExportsOutputFnGetAttVacationFinderPhotos6F793EB0Arn0729E44A": "arn:aws:s3:::vacation-finder-photos-0605f1bccdbb",
     "ExportsOutputRefVacationsTable4EADB10CE445282A": "VacationsTable-0605f1bccdbb",
     "ExportsOutputFnGetAttVacationsTable4EADB10CArnADC1D7AC": "arn:aws:dynamodb:us-east-2:483579223850:table/VacationsTable-0605f1bccdbb",
     "VacationFinderPhotosBucketName": "vacation-finder-photos-0605f1bccdbb"
+  },
+  "UiDeploymentStack": {
+    "VacationFinderUrl": "d1ii4uxvnf1xds.cloudfront.net"
   },
   "LambdaStack": {
     "ExportsOutputFnGetAttvacationsLambda01CB0E67Arn2C59B143": "arn:aws:lambda:us-east-2:483579223850:function:LambdaStack-vacationsLambda01CB0E67-b4CeOXlxrAbk"
