@@ -13,7 +13,7 @@ import {
 //Stack that will contain the Dynamodb database
 export class DataStack extends Stack {
   public readonly vacationsTable: ITable;
-  public readonly deploymentBucket: IBucket;
+  // public readonly deploymentBucket: IBucket;
   public readonly photosBucket: IBucket;
 
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -21,18 +21,18 @@ export class DataStack extends Stack {
 
     const suffix = getSuffixFromStack(this);
 
-    this.deploymentBucket = new Bucket(this, "VacationFinderFrontend", {
-      bucketName: `vacation-finder-frontend-${suffix}`,
-      //objectOwnership: ObjectOwnership.OBJECT_WRITER,
-      blockPublicAccess: {
-        blockPublicAcls: false,
-        blockPublicPolicy: false,
-        ignorePublicAcls: false,
-        restrictPublicBuckets: false,
-      },
-      publicReadAccess: true,
-      websiteIndexDocument: "index.html",
-    });
+    // this.deploymentBucket = new Bucket(this, "VacationFinderFrontend", {
+    //   bucketName: `vacation-finder-frontend-${suffix}`,
+    //   //objectOwnership: ObjectOwnership.OBJECT_WRITER,
+    //   blockPublicAccess: {
+    //     blockPublicAcls: false,
+    //     blockPublicPolicy: false,
+    //     ignorePublicAcls: false,
+    //     restrictPublicBuckets: false,
+    //   },
+    //   publicReadAccess: true,
+    //   websiteIndexDocument: "index.html",
+    // });
 
     this.photosBucket = new Bucket(this, "VacationFinderPhotos", {
       bucketName: `vacation-finder-photos-${suffix}`,
