@@ -45,9 +45,7 @@ This project served as a comprehensive learning experience, covering a wide arra
 * **Infrastructure as Code (IaC):** Wrote and managed AWS infrastructure using **AWS Cloud Development Kit (CDK)**.
 * **Multi-Stack Deployments:** Handled multiple CloudFormation stacks with CDK to organize resources and reduce the blast radius of deployments.
 * **CDK Fundamentals:** Gained basic usage knowledge of CDK constructs (L1, L2, L3), outputs, and parameters.
-* **CI/CD Pipelines:** Built robust CI/CD pipelines for CDK applications using **AWS CodePipeline**.
 * **Serverless API Development:** Implemented serverless APIs using a combination of **AWS Lambda, API Gateway, DynamoDB, and S3**.
-* **Intermediate CDK:** Explored advanced CDK topics such as intrinsic functions, aspects, and cross-stack references for complex deployments.
 * **CDK Code Testing:** Practiced CDK code testing methodologies, including declarative tests, matchers, captors, and snapshot testing.
 * **Multiple Tenant Applications:** Implemented multi-tenant authentication and authorization using **AWS Cognito and Amplify**.
 * **AWS SDK Calls:** Learned to make AWS SDK calls from various parts of the application.
