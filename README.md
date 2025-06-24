@@ -15,7 +15,6 @@ This project was built leveraging the power of **AWS Cloud Development Kit (CDK)
 * **Amazon S3:** Scalable object storage for vacation images.
 * **AWS Amplify:** Simplifies front-end integration with AWS backend services (authentication).
 * **AWS Cognito:** User directory for authentication and authorization.
-* **AWS CodePipeline:** Continuous Integration and Continuous Delivery (CI/CD) for automated deployments.
 * **TypeScript:** Primary language for both CDK infrastructure and Lambda functions.
 
 **Frontend:**
