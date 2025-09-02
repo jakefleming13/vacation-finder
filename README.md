@@ -1,6 +1,6 @@
 # VacationFinder
 
-https://vacation-finder.vercel.app/
+<img width="724" height="413" alt="HomeScreen" src="https://github.com/user-attachments/assets/2597d5d0-c9cf-4505-9826-c22ae1f5121c" />
 
 VacationFinder is a full-stack web application that allows users to **create an account, log in, view, and reserve various vacation destinations**. Users also have the exciting option to **create their own vacation listings**, complete with details stored in DynamoDB and associated images uploaded to an S3 bucket. This project showcases a modern, serverless architecture built entirely on AWS.
 
@@ -30,6 +30,7 @@ This project was built leveraging the power of **AWS Cloud Development Kit (CDK)
 * **User Authentication:** Secure user registration, login, and logout powered by AWS Cognito and Amplify.
 * **Vacation Listing:** Browse a variety of vacation destinations.
 * **Vacation Creation:** Users can create new vacation entries, including details and an associated photo.
+  <img width="161" height="323" alt="CreateNew" src="https://github.com/user-attachments/assets/be88a73b-a278-4cc8-bd2b-b956e165fd19" />
 * **Vacation Reservation:** Reserve a vacation from the available listings.
 * **Image Uploads:** Seamlessly upload vacation photos to an S3 bucket.
 * **Responsive Design:** A modern, mobile-friendly user interface.
